@@ -3,63 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Portfolio | Kims</title>
-    <!-- Simple CSS to make it look professional -->
+    <title>Kim Julius Marin | Full Stack Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f4f9; }
-        header { text-align: center; padding: 50px 0; background: #2c3e50; color: white; border-radius: 8px; margin-bottom: 20px; }
-        .section { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
-        .tag { background: #3498db; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; margin-right: 5px; }
-        .project { margin-bottom: 20px; }
-        footer { text-align: center; font-size: 0.9em; color: #777; margin-top: 40px; }
+        :root {
+            --primary: #3498db;
+            --dark: #1a1a2e;
+            --light-bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: var(--dark);
+            color: var(--white);
+            padding: 100px 20px;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+
+        header h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: -1px; }
+        header p { font-size: 1.2rem; opacity: 0.9; font-weight: 300; }
+
+        .container { max-width: 1000px; margin: -50px auto 50px; padding: 0 20px; }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        h2 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: #eee;
+        }
+
+        /* --- Skill Tags --- */
+        .skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        
+        .tag {
+            background: var(--light-bg);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* --- Experience Timeline --- */
+        .job {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+            border-left: 2px solid var(--primary);
+        }
+
+        .job::before {
+            content: "";
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .job-title { font-weight: 700; font-size: 1.1rem; color: var(--dark); }
+        .job-company { color: var(--primary); font-weight: 600; }
+        .job-date { font-size: 0.85rem; color: #888; margin-bottom: 10px; }
+
+        /* --- Interactive Footer --- */
+        footer {
+            text-align: center;
+            padding: 50px;
+            background: var(--dark);
+            color: white;
+        }
+
+        #topBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            z-index: 100;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
 
+    <button onclick="scrollToTop()" id="topBtn" title="Go to top">↑ Top</button>
+
     <header>
-        <h1>Full Stack Developer</h1>
-        <p>Specializing in Laravel, AWS Infrastructure, and Backend Systems</p>
+        <h1>Kim Julius Marin</h1>
+        <p>Full Stack Developer | Laravel & Infrastructure Expert</p>
     </header>
 
-    <div class="section">
-        <h2>About Me</h2>
-        <p>Experienced developer with a strong focus on building scalable web applications. Proficient in **PHP (Laravel)**, managing **AWS Cloud Infrastructure** (Cognito, CloudFront, EC2), and optimizing server performance with **Nginx**.</p>
-    </div>
+    <div class="container">
+        <section class="card">
+            <h2>About Me</h2>
+            <p>Seeking a challenging Full Stack Web Developer role to build dynamic, user-friendly applications. I specialize in backend logic with <strong>Laravel & GraphQL</strong> and frontend interactivity with <strong>Angular, React, and Vue</strong>.</p>
+        </section>
 
-    <div class="section">
-        <h2>Technical Skills</h2>
-        <div>
-            <span class="tag">Laravel</span>
-            <span class="tag">PHP</span>
-            <span class="tag">AWS (Cognito/CloudFront)</span>
-            <span class="tag">Nginx</span>
-            <span class="tag">GraphQL</span>
-            <span class="tag">MySQL</span>
-        </div>
-    </div>
+        <section class="card">
+            <h2>Technical Stack</h2>
+            <div class="skills-container">
+                <span class="tag">PHP</span> <span class="tag">Laravel</span> 
+                <span class="tag">GraphQL</span> <span class="tag">TypeScript</span>
+                <span class="tag">Angular</span> <span class="tag">React</span>
+                <span class="tag">Node.js</span> <span class="tag">MySQL</span>
+                <span class="tag">Amazon RDS</span> <span class="tag">Tailwind CSS</span>
+                <span class="tag">Nginx</span> <span class="tag">Git</span>
+            </div>
+        </section>
 
-    <div class="section">
-        <h2>Recent Projects</h2>
-        <div class="project">
-            <h3>School Management System</h3>
-            <p>A full-stack platform featuring secure authentication via AWS Cognito and optimized delivery through CloudFront CDN.</p>
-        </div>
-        <div class="project">
-            <h3>3D Figurine Tracking API</h3>
-            <p>A backend service designed for managing 1/7 scale figurine data and modeling workflows.</p>
-        </div>
-    </div>
+        <section class="card">
+            <h2>Experience</h2>
+            
+            <div class="job">
+                <div class="job-title">Software Engineer</div>
+                <div class="job-company">AtomIT Business Solutions Inc</div>
+                <div class="job-date">2025 – 2026</div>
+                <p>DevOps operations, system maintenance, and building robust Laravel applications following clean code standards.</p>
+            </div>
 
-    <div class="section">
-        <h2>Contact</h2>
-        <p>Interested in collaborating? Check out my GitHub profile or reach out directly.</p>
-        <a href="https://github.com/Kims021">Visit my GitHub</a>
+            <div class="job">
+                <div class="job-title">IT Specialist</div>
+                <div class="job-company">Acendens Asia Philippines</div>
+                <div class="job-date">2023 – 2025</div>
+                <p>Architected web solutions using Angular, Tailwind, and PHP Laravel Lighthouse for seamless data delivery.</p>
+            </div>
+        </section>
     </div>
 
     <footer>
-        <p>&copy; 2026 Kims. Built with GitHub Pages.</p>
+        <p>Connect with me: <strong>kimmarin43@gmail.com</strong></p>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 Built with GitHub Pages</p>
     </footer>
 
+    <script>
+        // Show button when scrolling down
+        window.onscroll = function() {
+            let btn = document.getElementById("topBtn");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        // Smooth scroll to top
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Add a simple fade-in effect to cards on load
+        document.querySelectorAll('.card').forEach((card, index) => {
+            card.style.opacity = "0";
+            card.style.transition = "all 0.6s ease-out";
+            card.style.transform = "translateY(20px)";
+            
+            setTimeout(() => {
+                card.style.opacity = "1";
+                card.style.transform = "translateY(0)";
+            }, 200 * index);
+        });
+    </script>
 </body>
 </html>
