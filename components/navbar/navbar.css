@@ -1,0 +1,233 @@
+/* ================================================= */
+/* NAVBAR */
+/* ================================================= */
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    z-index:999;
+
+    backdrop-filter:blur(14px);
+
+    background:
+    rgba(2,6,23,0.7);
+
+    border-bottom:
+    1px solid var(--border);
+
+    transition:0.3s ease;
+
+}
+
+/* ================================================= */
+/* NAVBAR CONTAINER */
+/* ================================================= */
+
+.navbar-container{
+
+    height:80px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+/* ================================================= */
+/* LOGO */
+/* ================================================= */
+
+.navbar-logo{
+
+    font-size:1.2rem;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #38bdf8,
+        #8b5cf6
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+/* ================================================= */
+/* LINKS */
+/* ================================================= */
+
+.navbar-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+
+}
+
+.navbar-links a{
+
+    color:white;
+
+    font-size:0.95rem;
+
+    transition:0.3s ease;
+
+    position:relative;
+
+}
+
+/* HOVER EFFECT */
+
+.navbar-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--primary);
+
+    transition:0.3s ease;
+
+}
+
+.navbar-links a:hover{
+
+    color:var(--primary);
+
+}
+
+.navbar-links a:hover::after{
+
+    width:100%;
+
+}
+
+/* ================================================= */
+/* MENU BUTTON */
+/* ================================================= */
+
+.menu-toggle{
+
+    display:none;
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    font-size:1.8rem;
+
+    cursor:pointer;
+
+}
+
+/* ================================================= */
+/* MOBILE MENU */
+/* ================================================= */
+
+.mobile-menu{
+
+    display:none;
+
+    flex-direction:column;
+
+    padding:20px;
+
+    gap:20px;
+
+    background:
+    rgba(15,23,42,0.98);
+
+    border-top:
+    1px solid var(--border);
+
+}
+
+.mobile-menu a{
+
+    color:white;
+
+}
+
+/* ================================================= */
+/* ACTIVE */
+/* ================================================= */
+
+.mobile-menu.active{
+
+    display:flex;
+
+}
+
+/* ================================================= */
+/* SCROLLED */
+/* ================================================= */
+
+.navbar.scrolled{
+
+    background:
+    rgba(2,6,23,0.95);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.3);
+
+}
+
+/* ================================================= */
+/* RESPONSIVE */
+/* ================================================= */
+
+@media(max-width:768px){
+
+    .navbar-links{
+
+        display:none;
+
+    }
+
+    .menu-toggle{
+
+        display:block;
+
+    }
+
+}
+/* ACTIVE LINK */
+
+.navbar-links a.active{
+
+    color:var(--primary);
+
+}
+
+.navbar-links a.active::after{
+
+    width:100%;
+
+}

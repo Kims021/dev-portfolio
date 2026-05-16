@@ -1,0 +1,240 @@
+/* ================================================= */
+/* FOOTER */
+/* ================================================= */
+
+.footer{
+
+    position:relative;
+
+    padding:100px 0 40px;
+
+    border-top:
+    1px solid var(--border);
+
+    background:
+    rgba(255,255,255,0.02);
+
+}
+
+/* ================================================= */
+/* TOP */
+/* ================================================= */
+
+.footer-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:60px;
+
+    margin-bottom:50px;
+
+}
+
+/* ================================================= */
+/* INFO */
+/* ================================================= */
+
+.footer-info{
+
+    max-width:600px;
+
+}
+
+.footer-info h2{
+
+    font-size:2rem;
+
+    margin-bottom:20px;
+
+}
+
+.footer-info p{
+
+    color:var(--muted);
+
+    line-height:1.9;
+
+}
+
+/* ================================================= */
+/* CONTACT */
+/* ================================================= */
+
+.footer-contact h3{
+
+    margin-bottom:20px;
+
+}
+
+.footer-contact a{
+
+    display:block;
+
+    color:var(--primary);
+
+    margin-bottom:12px;
+
+}
+
+.footer-contact p{
+
+    color:var(--muted);
+
+}
+
+/* ================================================= */
+/* DIVIDER */
+/* ================================================= */
+
+.footer-divider{
+
+    width:100%;
+
+    height:1px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    margin-bottom:35px;
+
+}
+
+/* ================================================= */
+/* BOTTOM */
+/* ================================================= */
+
+.footer-bottom{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+/* TEXT */
+
+.footer-bottom p{
+
+    color:var(--muted);
+
+}
+
+/* ================================================= */
+/* SOCIALS */
+/* ================================================= */
+
+.footer-socials{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+}
+
+.footer-socials a{
+
+    color:white;
+
+    transition:0.3s ease;
+
+}
+
+/* HOVER */
+
+.footer-socials a:hover{
+
+    color:var(--primary);
+
+}
+
+/* ================================================= */
+/* BACK TO TOP */
+/* ================================================= */
+
+.back-to-top{
+
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    width:55px;
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:1.2rem;
+
+    background:
+    linear-gradient(
+        135deg,
+        #38bdf8,
+        #8b5cf6
+    );
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.3);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:0.3s ease;
+
+    z-index:999;
+
+}
+
+/* ACTIVE */
+
+.back-to-top.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+/* HOVER */
+
+.back-to-top:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/* ================================================= */
+/* RESPONSIVE */
+/* ================================================= */
+
+@media(max-width:768px){
+
+    .footer-top{
+
+        flex-direction:column;
+
+    }
+
+    .footer-bottom{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}

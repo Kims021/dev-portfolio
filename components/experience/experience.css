@@ -1,0 +1,263 @@
+/* ================================================= */
+/* EXPERIENCE */
+/* ================================================= */
+
+.experience{
+
+    position:relative;
+
+}
+
+/* ================================================= */
+/* HEADER */
+/* ================================================= */
+
+.experience-header{
+
+    margin-bottom:70px;
+
+}
+
+/* ================================================= */
+/* TIMELINE */
+/* ================================================= */
+
+.timeline{
+
+    position:relative;
+
+    padding-left:40px;
+
+}
+
+/* LINE */
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:8px;
+
+    width:2px;
+
+    height:100%;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #38bdf8,
+        #8b5cf6
+    );
+
+}
+
+/* ================================================= */
+/* ITEM */
+/* ================================================= */
+
+.timeline-item{
+
+    position:relative;
+
+    margin-bottom:50px;
+
+}
+
+/* DOT */
+
+.timeline-dot{
+
+    position:absolute;
+
+    left:-40px;
+    top:10px;
+
+    width:18px;
+    height:18px;
+
+    border-radius:50%;
+
+    background:#38bdf8;
+
+    box-shadow:
+    0 0 20px rgba(56,189,248,0.8);
+
+}
+
+/* ================================================= */
+/* CONTENT */
+/* ================================================= */
+
+.timeline-content{
+
+    background:
+    rgba(255,255,255,0.03);
+
+    border:
+    1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:35px;
+
+    transition:0.3s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* HOVER */
+
+.timeline-content:hover{
+
+    transform:translateY(-8px);
+
+    border-color:
+    rgba(56,189,248,0.4);
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.25);
+
+}
+
+/* LIGHT */
+
+.timeline-content::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-50%;
+
+    right:-50%;
+
+    width:250px;
+
+    height:250px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(56,189,248,0.15),
+        transparent
+    );
+
+}
+
+/* ================================================= */
+/* YEAR */
+/* ================================================= */
+
+.timeline-year{
+
+    display:inline-block;
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    font-size:0.85rem;
+
+    background:
+    rgba(56,189,248,0.08);
+
+    border:
+    1px solid rgba(56,189,248,0.2);
+
+    color:var(--primary);
+
+    margin-bottom:20px;
+
+}
+
+/* ================================================= */
+/* TITLES */
+/* ================================================= */
+
+.timeline-content h3{
+
+    font-size:1.7rem;
+
+    margin-bottom:10px;
+
+}
+
+.timeline-content h4{
+
+    color:var(--primary);
+
+    margin-bottom:20px;
+
+    font-weight:600;
+
+}
+
+/* ================================================= */
+/* TEXT */
+/* ================================================= */
+
+.timeline-content p{
+
+    color:var(--muted);
+
+    line-height:1.9;
+
+    margin-bottom:30px;
+
+}
+
+/* ================================================= */
+/* TAGS */
+/* ================================================= */
+
+.timeline-tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.timeline-tags span{
+
+    padding:12px 18px;
+
+    border-radius:999px;
+
+    font-size:0.9rem;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+}
+
+/* ================================================= */
+/* RESPONSIVE */
+/* ================================================= */
+
+@media(max-width:768px){
+
+    .timeline{
+
+        padding-left:25px;
+
+    }
+
+    .timeline-dot{
+
+        left:-25px;
+
+    }
+
+}
