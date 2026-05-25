@@ -848,6 +848,8 @@
 
         grid-template-columns:1fr;
 
+        gap:50px;
+
     }
 
     .hero-title{
@@ -860,15 +862,123 @@
 
 @media(max-width:768px){
 
+    .hero{
+
+        padding-top:90px;
+
+    }
+
     .hero-title{
 
-        font-size:2.7rem;
+        font-size:2.4rem;
+
+    }
+
+    .hero-subtitle{
+
+        font-size:1.15rem;
 
     }
 
     .hero-buttons{
 
         flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .contact-btn{
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .hero{
+
+        padding-top:80px;
+
+    }
+
+    .hero-tag{
+
+        font-size:0.72rem;
+
+        letter-spacing:2.5px;
+
+        margin-bottom:14px;
+
+    }
+
+    .hero-title{
+
+        font-size:1.85rem;
+
+        margin-bottom:14px;
+
+    }
+
+    .hero-subtitle{
+
+        font-size:1rem;
+
+        margin-bottom:18px;
+
+    }
+
+    .hero-description{
+
+        font-size:0.9rem;
+
+        margin-bottom:28px;
+
+    }
+
+    .hero-buttons{
+
+        gap:12px;
+
+        margin-bottom:28px;
+
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .contact-btn{
+
+        padding:13px 20px;
+
+    }
+
+    .hero-stack{
+
+        gap:10px;
+
+    }
+
+    .hero-stack span{
+
+        font-size:0.8rem;
+
+        padding:8px 14px;
+
+    }
+
+    .hero-image{
+
+        display:none;
+
+    }
+
+    .scroll-indicator{
+
+        display:none;
 
     }
 
