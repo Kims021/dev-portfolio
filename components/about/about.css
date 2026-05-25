@@ -53,17 +53,18 @@
 
 .about-card{
 
-    background:
-    rgba(255,255,255,0.03);
+    background:var(--card);
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     border-radius:24px;
 
     padding:40px;
 
-    transition:0.3s ease;
+    transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 
     position:relative;
 
@@ -77,14 +78,15 @@
 
     transform:translateY(-8px);
 
-    border-color:rgba(56,189,248,0.4);
+    border-color:var(--primary);
 
     box-shadow:
-    0 20px 50px rgba(0,0,0,0.2);
+    0 20px 50px rgba(0,0,0,0.2),
+    0 0 0 1px var(--primary);
 
 }
 
-/* GLOW */
+/* Top-right radial glow orb */
 
 .about-card::before{
 
@@ -92,20 +94,62 @@
 
     position:absolute;
 
-    top:-50%;
+    top:-60px;
 
-    right:-50%;
+    right:-60px;
 
-    width:200px;
+    width:220px;
 
-    height:200px;
+    height:220px;
+
+    border-radius:50%;
 
     background:
     radial-gradient(
         circle,
-        rgba(56,189,248,0.15),
-        transparent
+        color-mix(in srgb, var(--primary) 18%, transparent),
+        transparent 70%
     );
+
+    pointer-events:none;
+
+    transition:opacity 0.3s ease;
+
+}
+
+/* Bottom accent glow on hover */
+
+.about-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:0;
+    left:0;
+    right:0;
+
+    height:100px;
+
+    border-radius:0 0 24px 24px;
+
+    background:radial-gradient(
+        ellipse at center bottom,
+        var(--primary),
+        transparent 70%
+    );
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:opacity 0.4s ease;
+
+}
+
+.about-card:hover::after{
+
+    opacity:0.07;
 
 }
 
@@ -115,8 +159,8 @@
 
 .about-icon{
 
-    width:70px;
-    height:70px;
+    width:66px;
+    height:66px;
 
     display:flex;
 
@@ -124,21 +168,32 @@
 
     justify-content:center;
 
-    border-radius:18px;
+    border-radius:50%;
 
     margin-bottom:25px;
 
-    font-size:2rem;
+    font-size:1.9rem;
 
     background:
     linear-gradient(
         135deg,
-        rgba(56,189,248,0.15),
-        rgba(139,92,246,0.15)
+        color-mix(in srgb, var(--primary) 22%, var(--card)),
+        color-mix(in srgb, var(--secondary) 22%, var(--card))
     );
 
-    border:
-    1px solid rgba(255,255,255,0.08);
+    border:1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+
+    transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+
+}
+
+.about-card:hover .about-icon{
+
+    transform:scale(1.08);
+
+    border-color:color-mix(in srgb, var(--primary) 55%, transparent);
 
 }
 
@@ -177,5 +232,15 @@
         grid-template-columns:1fr;
 
     }
+
+}
+
+/* ================================================= */
+/* LIGHT MODE */
+/* ================================================= */
+
+[data-theme="light"] .about-card{
+
+    box-shadow:0 2px 16px rgba(0,0,0,0.07);
 
 }

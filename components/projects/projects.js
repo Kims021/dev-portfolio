@@ -1,3 +1,4 @@
+(function(){
 /* ================================================= */
 /* PROJECT SLIDER */
 /* ================================================= */
@@ -210,7 +211,10 @@ previewImages.forEach((image) => {
     /* OPEN */
     /* ===================================== */
 
-    lightbox.classList.add("active");
+    lightbox.style.display = "flex";
+    requestAnimationFrame(() => {
+      lightbox.classList.add("active");
+    });
 
     /* ===================================== */
     /* IMAGE */
@@ -254,12 +258,18 @@ previewImages.forEach((image) => {
 /* CLOSE BUTTON */
 /* ================================================= */
 
-if (closeLightbox) {
-  closeLightbox.addEventListener("click", () => {
-    if (lightbox) {
-      lightbox.classList.remove("active");
+function closeLightboxFn() {
+  if (!lightbox) return;
+  lightbox.classList.remove("active");
+  lightbox.addEventListener("transitionend", () => {
+    if (!lightbox.classList.contains("active")) {
+      lightbox.style.display = "none";
     }
-  });
+  }, { once: true });
+}
+
+if (closeLightbox) {
+  closeLightbox.addEventListener("click", closeLightboxFn);
 }
 
 /* ================================================= */
@@ -269,7 +279,7 @@ if (closeLightbox) {
 if (lightbox) {
   lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) {
-      lightbox.classList.remove("active");
+      closeLightboxFn();
     }
   });
 }
@@ -284,7 +294,7 @@ document.addEventListener("keydown", (event) => {
     lightbox &&
     lightbox.classList.contains("active")
   ) {
-    lightbox.classList.remove("active");
+    closeLightboxFn();
   }
 });
 
@@ -295,3 +305,4 @@ document.addEventListener("keydown", (event) => {
 // console.log(
 //     "Projects Loaded"
 // );
+})();

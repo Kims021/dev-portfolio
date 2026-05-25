@@ -14,10 +14,14 @@
 
     z-index:999;
 
+    display:flex;
+
+    flex-direction:column;
+
     backdrop-filter:blur(14px);
 
     background:
-    rgba(2,6,23,0.7);
+    var(--navbar-bg);
 
     border-bottom:
     1px solid var(--border);
@@ -31,6 +35,8 @@
 /* ================================================= */
 
 .navbar-container{
+
+    order:0;
 
     height:80px;
 
@@ -57,8 +63,8 @@
     background:
     linear-gradient(
         135deg,
-        #38bdf8,
-        #8b5cf6
+        var(--primary),
+        var(--secondary)
     );
 
     -webkit-background-clip:text;
@@ -83,7 +89,7 @@
 
 .navbar-links a{
 
-    color:white;
+    color:var(--text);
 
     font-size:0.95rem;
 
@@ -128,10 +134,102 @@
 }
 
 /* ================================================= */
+/* ACTIONS */
+/* ================================================= */
+
+.navbar-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+/* ================================================= */
+/* NAV SOCIAL ICONS */
+/* ================================================= */
+
+.nav-social{
+
+    order:1;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:38px;
+
+    height:38px;
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    color:var(--muted);
+
+    transition:var(--transition);
+
+}
+
+.nav-social:hover{
+
+    border-color:var(--primary);
+
+    color:var(--primary);
+
+}
+
+/* ================================================= */
+/* THEME TOGGLE BUTTON */
+/* ================================================= */
+
+.theme-toggle{
+
+    order:2;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:none;
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    color:var(--text);
+
+    width:38px;
+
+    height:38px;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.theme-toggle:hover{
+
+    border-color:var(--primary);
+
+    color:var(--primary);
+
+}
+
+/* ================================================= */
 /* MENU BUTTON */
 /* ================================================= */
 
 .menu-toggle{
+
+    order:3;
 
     display:none;
 
@@ -139,7 +237,7 @@
 
     border:none;
 
-    color:white;
+    color:var(--text);
 
     font-size:1.8rem;
 
@@ -153,6 +251,8 @@
 
 .mobile-menu{
 
+    order:1;
+
     display:none;
 
     flex-direction:column;
@@ -162,7 +262,7 @@
     gap:20px;
 
     background:
-    rgba(15,23,42,0.98);
+    var(--navbar-mobile-bg);
 
     border-top:
     1px solid var(--border);
@@ -171,7 +271,7 @@
 
 .mobile-menu a{
 
-    color:white;
+    color:var(--text);
 
 }
 
@@ -192,10 +292,307 @@
 .navbar.scrolled{
 
     background:
-    rgba(2,6,23,0.95);
+    var(--navbar-scrolled-bg);
 
     box-shadow:
     0 10px 30px rgba(0,0,0,0.3);
+
+}
+
+/* ================================================= */
+/* ACTIVE LINK */
+/* ================================================= */
+
+.navbar-links a.active{
+
+    color:var(--primary);
+
+}
+
+.navbar-links a.active::after{
+
+    width:100%;
+
+}
+
+/* ================================================= */
+/* THEME PANEL */
+/* ================================================= */
+
+.theme-panel{
+
+    position:absolute;
+
+    top:calc(100% + 10px);
+
+    right:20px;
+
+    min-width:360px;
+
+    padding:22px;
+
+    background:rgba(10,16,36,0.92);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    border-radius:22px;
+
+    backdrop-filter:blur(28px);
+
+    -webkit-backdrop-filter:blur(28px);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(255,255,255,0.04);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(-8px) scale(0.97);
+
+    transform-origin:top right;
+
+    transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.25s ease;
+
+    z-index:1000;
+
+    max-height:calc(100vh - 110px);
+
+    overflow-y:auto;
+
+    scrollbar-width:thin;
+
+    scrollbar-color:rgba(255,255,255,0.15) transparent;
+
+}
+
+.theme-panel::-webkit-scrollbar{
+
+    width:4px;
+
+}
+
+.theme-panel::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.theme-panel::-webkit-scrollbar-thumb{
+
+    background:rgba(255,255,255,0.15);
+
+    border-radius:4px;
+
+}
+
+/* OPEN */
+
+.theme-panel.open{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0) scale(1);
+
+}
+
+/* ================================================= */
+/* PANEL TITLE */
+/* ================================================= */
+
+.theme-panel-title{
+
+    font-size:0.7rem;
+
+    font-weight:700;
+
+    letter-spacing:2.5px;
+
+    text-transform:uppercase;
+
+    color:rgba(255,255,255,0.35);
+
+    margin-bottom:16px;
+
+}
+
+/* ================================================= */
+/* THEME GRID */
+/* ================================================= */
+
+.theme-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:10px;
+
+}
+
+/* ================================================= */
+/* SWATCH */
+/* ================================================= */
+
+.theme-swatch{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:7px;
+
+    background:transparent;
+
+    border:2px solid transparent;
+
+    border-radius:14px;
+
+    padding:8px 6px;
+
+    cursor:pointer;
+
+    transition:0.2s ease;
+
+    position:relative;
+
+}
+
+.theme-swatch:hover{
+
+    background:rgba(255,255,255,0.06);
+
+    border-color:rgba(255,255,255,0.15);
+
+}
+
+.theme-swatch.active{
+
+    border-color:var(--primary);
+
+}
+
+/* ================================================= */
+/* SWATCH PREVIEW */
+/* ================================================= */
+
+.swatch-preview{
+
+    width:68px;
+
+    height:46px;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+
+}
+
+.theme-swatch:hover .swatch-preview,
+.theme-swatch.active .swatch-preview{
+
+    transform:translateY(-2px);
+
+    border-color:rgba(255,255,255,0.25);
+
+}
+
+/* ================================================= */
+/* ACCENT BAR */
+/* ================================================= */
+
+.swatch-accent{
+
+    position:absolute;
+
+    bottom:0;
+    left:0;
+    right:0;
+
+    height:6px;
+
+}
+
+/* ================================================= */
+/* SWATCH NAME */
+/* ================================================= */
+
+.swatch-name{
+
+    font-size:0.72rem;
+
+    font-weight:600;
+
+    color:rgba(255,255,255,0.45);
+
+    transition:color 0.2s ease;
+
+}
+
+.theme-swatch:hover .swatch-name,
+.theme-swatch.active .swatch-name{
+
+    color:rgba(255,255,255,0.9);
+
+}
+
+/* ================================================= */
+/* CHECKMARK */
+/* ================================================= */
+
+.swatch-tick{
+
+    position:absolute;
+
+    top:5px;
+    right:5px;
+
+    width:17px;
+    height:17px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-size:0.6rem;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    opacity:0;
+
+    transform:scale(0.5);
+
+    transition:0.2s ease;
+
+}
+
+.theme-swatch.active .swatch-tick{
+
+    opacity:1;
+
+    transform:scale(1);
 
 }
 
@@ -217,17 +614,557 @@
 
     }
 
+    .theme-panel{
+
+        right:10px;
+
+        left:10px;
+
+        min-width:unset;
+
+    }
+
+    .theme-grid{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
 }
-/* ACTIVE LINK */
 
-.navbar-links a.active{
+/* ================================================= */
+/* LIGHT MODE */
+/* ================================================= */
 
-    color:var(--primary);
+[data-theme="light"] .theme-panel{
+
+    background:rgba(255,255,255,0.94);
+
+    border-color:rgba(0,0,0,0.1);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,0.12),
+    0 0 0 1px rgba(0,0,0,0.04);
 
 }
 
-.navbar-links a.active::after{
+[data-theme="light"] .theme-panel-title{
+
+    color:rgba(0,0,0,0.4);
+
+}
+
+[data-theme="light"] .theme-swatch:hover{
+
+    background:rgba(0,0,0,0.05);
+
+    border-color:rgba(0,0,0,0.15);
+
+}
+
+[data-theme="light"] .swatch-name{
+
+    color:rgba(0,0,0,0.5);
+
+}
+
+[data-theme="light"] .theme-swatch:hover .swatch-name,
+[data-theme="light"] .theme-swatch.active .swatch-name{
+
+    color:rgba(0,0,0,0.85);
+
+}
+
+[data-theme="light"] .swatch-preview{
+
+    border-color:rgba(0,0,0,0.12);
+
+}
+
+[data-theme="light"] .theme-swatch:hover .swatch-preview,
+[data-theme="light"] .theme-swatch.active .swatch-preview{
+
+    border-color:rgba(0,0,0,0.25);
+
+}
+
+/* ================================================= */
+/* PANEL DIVIDER */
+/* ================================================= */
+
+.panel-divider{
+
+    height:1px;
+
+    background:rgba(255,255,255,0.08);
+
+    margin:18px 0 16px;
+
+}
+
+[data-theme="light"] .panel-divider{
+
+    background:rgba(0,0,0,0.08);
+
+}
+
+/* ================================================= */
+/* BG GRID */
+/* ================================================= */
+
+.bg-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:8px;
+
+}
+
+/* ================================================= */
+/* BG SWATCH */
+/* ================================================= */
+
+.bg-swatch{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:transparent;
+
+    border:2px solid rgba(255,255,255,0.07);
+
+    border-radius:12px;
+
+    padding:10px 13px;
+
+    cursor:pointer;
+
+    transition:0.2s ease;
+
+    position:relative;
+
+    text-align:left;
+
+}
+
+.bg-swatch:hover{
+
+    background:rgba(255,255,255,0.06);
+
+    border-color:rgba(255,255,255,0.18);
+
+}
+
+.bg-swatch.active{
+
+    border-color:var(--primary);
+
+    background:rgba(255,255,255,0.04);
+
+}
+
+/* ================================================= */
+/* BG ICON */
+/* ================================================= */
+
+.bg-icon{
+
+    font-size:1.15rem;
+
+    line-height:1;
+
+    width:26px;
+
+    text-align:center;
+
+    flex-shrink:0;
+
+    transition:transform 0.2s ease;
+
+}
+
+.bg-swatch:hover .bg-icon,
+.bg-swatch.active .bg-icon{
+
+    transform:scale(1.15);
+
+}
+
+/* ================================================= */
+/* BG NAME */
+/* ================================================= */
+
+.bg-name{
+
+    font-size:0.73rem;
+
+    font-weight:600;
+
+    color:rgba(255,255,255,0.45);
+
+    transition:color 0.2s ease;
+
+    white-space:nowrap;
+
+}
+
+.bg-swatch:hover .bg-name,
+.bg-swatch.active .bg-name{
+
+    color:rgba(255,255,255,0.92);
+
+}
+
+/* ================================================= */
+/* BG TICK */
+/* ================================================= */
+
+.bg-tick{
+
+    position:absolute;
+
+    top:5px;
+    right:6px;
+
+    width:15px;
+    height:15px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-size:0.55rem;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    opacity:0;
+
+    transform:scale(0.5);
+
+    transition:0.2s ease;
+
+}
+
+.bg-swatch.active .bg-tick{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
+
+/* ================================================= */
+/* AUTO ROTATE SECTION */
+/* ================================================= */
+
+.auto-rotate-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.auto-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+/* ================================================= */
+/* AUTO TOGGLE (pill switch) */
+/* ================================================= */
+
+.auto-toggle{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:0;
+
+}
+
+.auto-track{
+
+    position:relative;
+
+    width:38px;
+
+    height:20px;
+
+    background:rgba(255,255,255,0.12);
+
+    border-radius:10px;
+
+    transition:background 0.25s ease;
+
+    flex-shrink:0;
+
+}
+
+.auto-thumb{
+
+    position:absolute;
+
+    top:3px;
+
+    left:3px;
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.5);
+
+    transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+
+}
+
+.auto-toggle.on .auto-track{
+
+    background:var(--primary);
+
+}
+
+.auto-toggle.on .auto-thumb{
+
+    transform:translateX(18px);
+
+    background:white;
+
+}
+
+.auto-label{
+
+    font-size:0.72rem;
+
+    font-weight:600;
+
+    color:rgba(255,255,255,0.45);
+
+    transition:color 0.2s ease;
+
+}
+
+.auto-toggle.on .auto-label{
+
+    color:rgba(255,255,255,0.9);
+
+}
+
+/* ================================================= */
+/* INTERVAL SELECT */
+/* ================================================= */
+
+.auto-interval{
 
     width:100%;
+
+    background:
+    rgba(255,255,255,0.06)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat right 12px center / 12px 8px;
+
+    border:1.5px solid rgba(255,255,255,0.1);
+
+    border-radius:10px;
+
+    color:rgba(255,255,255,0.75);
+
+    font-family:inherit;
+
+    font-size:0.73rem;
+
+    font-weight:600;
+
+    padding:9px 32px 9px 12px;
+
+    cursor:pointer;
+
+    outline:none;
+
+    transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+}
+
+.auto-interval:hover{
+
+    border-color:rgba(255,255,255,0.2);
+
+    background-color:rgba(255,255,255,0.1);
+
+}
+
+.auto-interval:focus{
+
+    border-color:var(--primary);
+
+}
+
+.auto-interval option{
+
+    background:#0f172a;
+
+    color:#f8fafc;
+
+}
+
+/* ================================================= */
+/* BG RESPONSIVE */
+/* ================================================= */
+
+@media(max-width:768px){
+
+    .bg-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+/* ================================================= */
+/* BG LIGHT MODE */
+/* ================================================= */
+
+[data-theme="light"] .bg-swatch{
+
+    border-color:rgba(0,0,0,0.07);
+
+}
+
+[data-theme="light"] .bg-swatch:hover{
+
+    background:rgba(0,0,0,0.05);
+
+    border-color:rgba(0,0,0,0.15);
+
+}
+
+[data-theme="light"] .bg-name{
+
+    color:rgba(0,0,0,0.5);
+
+}
+
+[data-theme="light"] .bg-swatch:hover .bg-name,
+[data-theme="light"] .bg-swatch.active .bg-name{
+
+    color:rgba(0,0,0,0.85);
+
+}
+
+/* ================================================= */
+/* AUTO ROTATE LIGHT MODE */
+/* ================================================= */
+
+[data-theme="light"] .auto-track{
+
+    background:rgba(0,0,0,0.12);
+
+}
+
+[data-theme="light"] .auto-thumb{
+
+    background:rgba(0,0,0,0.4);
+
+}
+
+[data-theme="light"] .auto-toggle.on .auto-thumb{
+
+    background:white;
+
+}
+
+[data-theme="light"] .auto-label{
+
+    color:rgba(0,0,0,0.45);
+
+}
+
+[data-theme="light"] .auto-toggle.on .auto-label{
+
+    color:rgba(0,0,0,0.85);
+
+}
+
+[data-theme="light"] .auto-interval{
+
+    background:
+    rgba(0,0,0,0.04)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(0,0,0,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat right 12px center / 12px 8px;
+
+    border-color:rgba(0,0,0,0.1);
+
+    color:rgba(0,0,0,0.7);
+
+}
+
+[data-theme="light"] .auto-interval:hover{
+
+    background-color:rgba(0,0,0,0.07);
+
+    border-color:rgba(0,0,0,0.18);
+
+}
+
+[data-theme="light"] .auto-interval option{
+
+    background:#ffffff;
+
+    color:#0f172a;
+
+}
+
+/* ================================================= */
+/* PANEL SCROLLBAR LIGHT MODE */
+/* ================================================= */
+
+[data-theme="light"] .theme-panel{
+
+    scrollbar-color:rgba(0,0,0,0.15) transparent;
+
+}
+
+[data-theme="light"] .theme-panel::-webkit-scrollbar-thumb{
+
+    background:rgba(0,0,0,0.15);
 
 }

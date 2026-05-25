@@ -182,8 +182,8 @@
     background:
     linear-gradient(
         135deg,
-        #38bdf8,
-        #8b5cf6
+        var(--primary),
+        var(--secondary)
     );
 
     box-shadow:
@@ -236,5 +236,27 @@
         align-items:flex-start;
 
     }
+
+}
+
+/* ================================================= */
+/* LIGHT MODE */
+/* ================================================= */
+
+[data-theme="light"] .footer{
+
+    background:rgba(0,0,0,0.02);
+
+}
+
+[data-theme="light"] .footer-divider{
+
+    background:rgba(0,0,0,0.1);
+
+}
+
+[data-theme="light"] .footer-socials a{
+
+    color:var(--text);
 
 }

@@ -20,6 +20,46 @@ html{
 
     scroll-behavior:smooth;
 
+    /* Page background lives here so canvas composites above it */
+    background:var(--bg);
+
+    /* Firefox scrollbar */
+    scrollbar-width:thin;
+
+    scrollbar-color:var(--primary) transparent;
+
+}
+
+/* ================================================= */
+/* SCROLLBAR (Webkit) */
+/* ================================================= */
+
+::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:5px;
+
+    transition:background 0.3s ease;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--secondary);
+
 }
 
 /* ================================================= */
@@ -29,16 +69,66 @@ html{
 body{
 
     font-family:
-    "Inter",
+    "Manrope",
     sans-serif;
 
-    background:
-    var(--bg);
+    background:transparent;
 
     color:
     var(--text);
 
     overflow-x:hidden;
+
+}
+
+h1,h2,h3,
+.hero-title,
+.hero-subtitle,
+.section-title{
+
+    font-family:
+    "Syne",
+    sans-serif;
+
+}
+
+/* ================================================= */
+/* BACKGROUND CANVAS */
+/* ================================================= */
+
+.bg-canvas{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    /* Below all page content */
+    z-index:0;
+
+    pointer-events:none;
+
+}
+
+/* Push content sections above the canvas.
+   #navbar is excluded — the <nav> inside is already
+   position:fixed; z-index:999 in the root stacking context,
+   so wrapping it in a z-index:1 context would cause the hero
+   (same z-index, later in DOM) to paint over the theme panel. */
+#hero,
+#about,
+#skills,
+#experience,
+#projects,
+#contact,
+#footer{
+
+    position:relative;
+
+    z-index:1;
 
 }
 
@@ -135,6 +225,178 @@ button{
     letter-spacing:4px;
 
     margin-bottom:20px;
+
+}
+
+/* ================================================= */
+/* LOADING SCREEN */
+/* ================================================= */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:var(--bg, #08060f);
+
+    z-index:99999;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:28px;
+
+    transition:opacity 0.6s ease, visibility 0.6s ease;
+
+}
+
+#loadingScreen.done{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+}
+
+.loader-initials{
+
+    font-family:"Syne",sans-serif;
+
+    font-size:3.5rem;
+
+    font-weight:800;
+
+    background:linear-gradient(135deg, var(--primary, #a855f7), var(--secondary, #ec4899));
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
+
+    animation:loaderPulse 1.4s ease-in-out infinite;
+
+}
+
+@keyframes loaderPulse{
+
+    0%,100%{ opacity:1; transform:scale(1); }
+
+    50%{ opacity:0.6; transform:scale(0.96); }
+
+}
+
+.loader-bar{
+
+    width:100px;
+
+    height:2px;
+
+    background:rgba(255,255,255,0.08);
+
+    border-radius:2px;
+
+    overflow:hidden;
+
+}
+
+.loader-fill{
+
+    height:100%;
+
+    width:0%;
+
+    background:linear-gradient(90deg, var(--primary, #a855f7), var(--secondary, #ec4899));
+
+    border-radius:2px;
+
+    animation:loaderFill 1.8s ease forwards;
+
+}
+
+@keyframes loaderFill{
+
+    0%{ width:0%; }
+
+    60%{ width:75%; }
+
+    100%{ width:92%; }
+
+}
+
+/* ================================================= */
+/* SCROLL PROGRESS BAR */
+/* ================================================= */
+
+#scrollProgress{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    height:3px;
+
+    width:0%;
+
+    background:linear-gradient(90deg, var(--primary), var(--secondary));
+
+    z-index:99998;
+
+    border-radius:0 3px 3px 0;
+
+    pointer-events:none;
+
+    transition:width 0.08s linear;
+
+}
+
+/* ================================================= */
+/* THEME TRANSITION OVERLAY */
+/* ================================================= */
+
+#themeTransition{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#000;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:9998;
+
+    transition:opacity 0.55s ease;
+
+}
+
+#themeTransition.active{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+
+/* ================================================= */
+/* LIGHTBOX — hidden before projects.css loads */
+/* ================================================= */
+
+#lightbox{
+
+    display:none;
 
 }
 

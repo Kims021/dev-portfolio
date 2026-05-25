@@ -21,6 +21,7 @@ const components = [
     "skills",
     "experience",
     "projects",
+    "contact",
     "footer"
 
 ];
@@ -62,44 +63,37 @@ function loadCSS(path){
 /* LOAD JS */
 /* ================================================= */
 
-function loadJS(path){
+async function loadJS(path){
 
-    return new Promise((resolve,reject)=>{
+    if(loadedJS.has(path)){
 
-        if(loadedJS.has(path)){
+        return;
 
-            resolve();
+    }
 
-            return;
+    const response = await fetch(path, { cache: "no-store" });
 
-        }
+    if(!response.ok){
 
-        const script =
-        document.createElement("script");
+        throw new Error(`Failed to load ${path}`);
 
-        script.src = path;
+    }
 
-        script.defer = true;
+    const code = await response.text();
 
-        script.onload = ()=>{
+    const script = document.createElement("script");
 
-            loadedJS.add(path);
+    /* inline text executes synchronously on appendChild,
+       guaranteeing the component HTML is already in the DOM.
+       sourceURL preserves correct filenames in devtools. */
+    /* Wrap in IIFE so each component's const/let declarations
+       are scoped and don't collide across scripts sharing the
+       global scope (e.g. both navbar.js and footer.js declare _r). */
+    script.textContent = `(()=>{\n${code}\n})();\n//# sourceURL=${path}`;
 
-            resolve();
+    document.body.appendChild(script);
 
-        };
-
-        script.onerror = ()=>{
-
-            reject(
-                `Failed to load ${path}`
-            );
-
-        };
-
-        document.body.appendChild(script);
-
-    });
+    loadedJS.add(path);
 
 }
 
@@ -110,7 +104,7 @@ function loadJS(path){
 async function loadHTML(path){
 
     const response =
-    await fetch(path);
+    await fetch(path, { cache: "no-store" });
 
     if(!response.ok){
 
@@ -169,7 +163,12 @@ async function loadComponent(name){
         const html =
         await loadHTML(htmlPath);
 
-        root.innerHTML = html;
+        /* Strip every <script> block from fetched component HTML.
+           Live-server injects its WebSocket reload script inside SVG
+           elements (3× in navbar.html — once per icon SVG). When left
+           in place those <script> nodes corrupt innerHTML parsing in
+           SVG context, swallowing sibling elements like #themePanel. */
+        root.innerHTML = html.replace(/<script\b[\s\S]*?<\/script>/gi, "");
 
         /* ========================================= */
         /* LOAD CSS */
@@ -181,7 +180,14 @@ async function loadComponent(name){
         /* LOAD JS */
         /* ========================================= */
 
+        /* Expose the component root so scripts can use
+           __cmpRoot.querySelector instead of document.getElementById,
+           which is unreliable for dynamically-injected content. */
+        window.__cmpRoot = root;
+
         await loadJS(jsPath);
+
+        window.__cmpRoot = null;
 
         // console.log(
         //     `${name} loaded successfully`
@@ -213,6 +219,12 @@ async function loadComponents(){
     initializeReveal();
 
     initializeActiveNavbar();
+
+    initThemeToggle();
+
+    dismissLoader();
+
+    initScrollProgress();
 
 }
 
@@ -283,54 +295,139 @@ function initializeActiveNavbar(){
         ".navbar-links a"
     );
 
-    window.addEventListener(
-        "scroll",
-        ()=>{
+    function updateActive(){
 
-            let current = "";
+        let current = "";
 
-            sections.forEach((section)=>{
+        sections.forEach((section)=>{
 
-                const sectionTop =
-                section.offsetTop - 120;
+            /* getBoundingClientRect gives viewport-relative top;
+               adding scrollY converts it to document-absolute position.
+               section.offsetTop alone is wrong here because each section
+               sits inside a position:relative wrapper div, making
+               offsetTop ≈ 0 for every section. */
+            const sectionTop =
+            section.getBoundingClientRect().top
+            + scrollY - 120;
 
-                const sectionHeight =
-                section.clientHeight;
+            const sectionHeight =
+            section.clientHeight;
 
-                if(
-                    scrollY >= sectionTop &&
-                    scrollY <
-                    sectionTop + sectionHeight
-                ){
+            if(
+                scrollY >= sectionTop &&
+                scrollY <
+                sectionTop + sectionHeight
+            ){
 
-                    current =
-                    section.getAttribute("id");
+                current =
+                section.getAttribute("id");
 
-                }
+            }
 
-            });
+        });
 
-            navLinks.forEach((link)=>{
+        navLinks.forEach((link)=>{
 
-                link.classList.remove(
-                    "active"
-                );
+            link.classList.remove("active");
 
-                if(
-                    link.getAttribute("href")
-                    === `#${current}`
-                ){
+            if(
+                link.getAttribute("href")
+                === `#${current}`
+            ){
 
-                    link.classList.add(
-                        "active"
-                    );
+                link.classList.add("active");
 
-                }
+            }
 
-            });
+        });
+
+    }
+
+    window.addEventListener("scroll", updateActive);
+
+    /* Run once on init so the correct link is active on page load */
+    updateActive();
+
+}
+
+/* ================================================= */
+/* LOADER DISMISS */
+/* ================================================= */
+
+function dismissLoader(){
+
+    const screen = document.getElementById("loadingScreen");
+
+    if(!screen) return;
+
+    const fill = screen.querySelector(".loader-fill");
+
+    if(fill){
+        fill.style.animation = "none";
+        fill.style.transition = "width 0.25s ease";
+        fill.style.width = "100%";
+    }
+
+    setTimeout(()=>{
+        screen.classList.add("done");
+    }, 280);
+
+}
+
+/* ================================================= */
+/* SCROLL PROGRESS */
+/* ================================================= */
+
+function initScrollProgress(){
+
+    const bar = document.getElementById("scrollProgress");
+
+    if(!bar) return;
+
+    window.addEventListener("scroll", ()=>{
+
+        const scrolled = window.scrollY;
+
+        const total =
+        document.documentElement.scrollHeight
+        - window.innerHeight;
+
+        bar.style.width =
+        (total > 0 ? (scrolled / total) * 100 : 0) + "%";
+
+    }, { passive: true });
+
+}
+
+/* ================================================= */
+/* THEME PANEL TOGGLE */
+/* ================================================= */
+
+function initThemeToggle(){
+
+    document.addEventListener("click", (e) => {
+
+        const panel  = document.getElementById("themePanel");
+        const toggle = document.getElementById("themeToggle");
+
+        if(!panel) return;
+
+        /* Clicked the toggle button (or anything inside it) */
+        if(toggle && toggle.contains(e.target)){
+
+            panel.classList.toggle("open");
+            return;
 
         }
-    );
+
+        /* Clicked outside both panel and toggle — close */
+        if(!panel.contains(e.target)){
+
+            panel.classList.remove("open");
+
+        }
+
+    });
 
 }
 

@@ -1,0 +1,534 @@
+/* ================================================= */
+/* CONTACT */
+/* ================================================= */
+
+.contact{
+
+    position:relative;
+
+}
+
+/* ================================================= */
+/* HEADER */
+/* ================================================= */
+
+.contact-header{
+
+    margin-bottom:50px;
+
+    max-width:680px;
+
+}
+
+/* ================================================= */
+/* INFO STRIP */
+/* ================================================= */
+
+.contact-strip{
+
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:0;
+
+    margin-bottom:40px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:18px 28px;
+
+    width:fit-content;
+
+}
+
+.contact-chip{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:0.92rem;
+
+    font-weight:500;
+
+    color:var(--muted);
+
+    padding:4px 20px;
+
+}
+
+.contact-chip:first-child{
+
+    padding-left:0;
+
+}
+
+.contact-chip a{
+
+    color:var(--primary);
+
+    transition:opacity 0.2s ease;
+
+}
+
+.contact-chip a:hover{
+
+    opacity:0.75;
+
+}
+
+.contact-chip-divider{
+
+    width:1px;
+
+    height:22px;
+
+    background:var(--border);
+
+    flex-shrink:0;
+
+}
+
+.chip-icon{
+
+    font-size:1rem;
+
+}
+
+.contact-available{
+
+    color:#28c840;
+
+    font-weight:600;
+
+}
+
+/* ================================================= */
+/* FORM CARD */
+/* ================================================= */
+
+.contact-card{
+
+    position:relative;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    padding:48px 52px;
+
+    max-width:780px;
+
+    transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+    overflow:hidden;
+
+}
+
+.contact-card:hover{
+
+    border-color:color-mix(in srgb, var(--primary) 40%, transparent);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.2),
+    0 0 0 1px color-mix(in srgb, var(--primary) 20%, transparent);
+
+}
+
+/* ================================================= */
+/* GLOW ORBS */
+/* ================================================= */
+
+.contact-orb{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+}
+
+.contact-orb-1{
+
+    width:300px;
+
+    height:300px;
+
+    top:-100px;
+
+    right:-80px;
+
+    background:radial-gradient(
+        circle,
+        color-mix(in srgb, var(--primary) 12%, transparent),
+        transparent 70%
+    );
+
+}
+
+.contact-orb-2{
+
+    width:200px;
+
+    height:200px;
+
+    bottom:-60px;
+
+    left:-60px;
+
+    background:radial-gradient(
+        circle,
+        color-mix(in srgb, var(--secondary) 10%, transparent),
+        transparent 70%
+    );
+
+}
+
+/* ================================================= */
+/* FORM */
+/* ================================================= */
+
+.contact-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+/* ================================================= */
+/* FORM GROUP */
+/* ================================================= */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:9px;
+
+}
+
+.form-group label{
+
+    font-size:0.82rem;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+    color:var(--muted);
+
+}
+
+/* ================================================= */
+/* INPUTS */
+/* ================================================= */
+
+.form-group input,
+.form-group textarea{
+
+    background:rgba(255,255,255,0.04);
+
+    border:1.5px solid var(--border);
+
+    border-radius:14px;
+
+    padding:14px 18px;
+
+    color:var(--text);
+
+    font-family:inherit;
+
+    font-size:0.95rem;
+
+    outline:none;
+
+    resize:none;
+
+    transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+
+    color:var(--muted);
+
+    opacity:0.5;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    border-color:var(--primary);
+
+    background:rgba(255,255,255,0.06);
+
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--primary) 14%, transparent);
+
+}
+
+/* ================================================= */
+/* FORM ACTIONS ROW */
+/* ================================================= */
+
+.form-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:16px;
+
+    margin-top:6px;
+
+}
+
+/* ================================================= */
+/* SOCIAL BUTTONS */
+/* ================================================= */
+
+.form-socials{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.form-social-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:12px;
+
+    border:1.5px solid var(--border);
+
+    color:var(--muted);
+
+    transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease;
+
+}
+
+.form-social-btn:hover{
+
+    border-color:var(--primary);
+
+    color:var(--primary);
+
+    background:color-mix(in srgb, var(--primary) 8%, var(--card));
+
+    transform:translateY(-2px);
+
+}
+
+/* ================================================= */
+/* SUBMIT */
+/* ================================================= */
+
+.contact-submit{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 30px;
+
+    border-radius:14px;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-size:0.92rem;
+
+    font-weight:700;
+
+    color:white;
+
+    background:linear-gradient(135deg, var(--primary), var(--secondary));
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+}
+
+.contact-submit::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(135deg, var(--secondary), var(--primary));
+
+    opacity:0;
+
+    transition:opacity 0.3s ease;
+
+}
+
+.contact-submit:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 30px color-mix(in srgb, var(--primary) 40%, transparent);
+
+}
+
+.contact-submit:hover::before{
+
+    opacity:1;
+
+}
+
+.contact-submit span,
+.contact-submit svg{
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+.contact-submit.sent{
+
+    background:linear-gradient(135deg, #28c840, #1aad2e);
+
+}
+
+/* ================================================= */
+/* RESPONSIVE */
+/* ================================================= */
+
+@media(max-width:768px){
+
+    .contact-strip{
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+    .contact-chip{
+
+        padding:0;
+
+    }
+
+    .contact-chip-divider{
+
+        width:100%;
+
+        height:1px;
+
+    }
+
+    .contact-card{
+
+        padding:30px 24px;
+
+    }
+
+    .form-actions{
+
+        flex-direction:column-reverse;
+
+        align-items:stretch;
+
+    }
+
+    .contact-submit{
+
+        justify-content:center;
+
+    }
+
+    .form-socials{
+
+        justify-content:center;
+
+    }
+
+}
+
+/* ================================================= */
+/* LIGHT MODE */
+/* ================================================= */
+
+[data-theme="light"] .contact-card{
+
+    box-shadow:0 2px 20px rgba(0,0,0,0.07);
+
+}
+
+[data-theme="light"] .form-group input,
+[data-theme="light"] .form-group textarea{
+
+    background:rgba(0,0,0,0.03);
+
+}
+
+[data-theme="light"] .form-group input:focus,
+[data-theme="light"] .form-group textarea:focus{
+
+    background:rgba(0,0,0,0.05);
+
+}

@@ -1,74 +1,20 @@
-/* ================================================= */
-/* BACK TO TOP */
-/* ================================================= */
+(function(){
+const _r = window.__cmpRoot || document;
 
-const backToTop =
-document.getElementById(
-    "backToTop"
-);
+const backToTop       = _r.querySelector("#backToTop");
+const footerCopyright = _r.querySelector("#footerCopyright");
 
-/* ================================================= */
-/* SHOW BUTTON */
-/* ================================================= */
+if(backToTop){
+    window.addEventListener("scroll",()=>{
+        backToTop.classList.toggle("active", window.scrollY > 300);
+    });
+    backToTop.addEventListener("click",()=>{
+        window.scrollTo({ top:0, behavior:"smooth" });
+    });
+}
 
-window.addEventListener(
-    "scroll",
-    ()=>{
-
-        if(window.scrollY > 300){
-
-            backToTop.classList.add(
-                "active"
-            );
-
-        }else{
-
-            backToTop.classList.remove(
-                "active"
-            );
-
-        }
-
-    }
-);
-
-/* ================================================= */
-/* SCROLL TOP */
-/* ================================================= */
-
-backToTop.addEventListener(
-    "click",
-    ()=>{
-
-        window.scrollTo({
-
-            top:0,
-
-            behavior:"smooth"
-
-        });
-
-    }
-);
-
-/* ================================================= */
-/* DYNAMIC COPYRIGHT */
-/* ================================================= */
-
-const footerCopyright =
-document.getElementById(
-    "footerCopyright"
-);
-
-const currentYear =
-new Date().getFullYear();
-
-footerCopyright.innerHTML =
-`
-© ${currentYear} Kim Julius Marin.
-All rights reserved.
-`;
-
-// console.log(
-//     "Footer Loaded"
-// );
+if(footerCopyright){
+    footerCopyright.innerHTML =
+    `© ${new Date().getFullYear()} Kim Julius Marin. All rights reserved.`;
+}
+})();
