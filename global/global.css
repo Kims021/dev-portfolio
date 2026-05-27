@@ -69,7 +69,8 @@ html{
 body{
 
     font-family:
-    "Manrope",
+    "Inter",
+    system-ui,
     sans-serif;
 
     background:transparent;
@@ -87,7 +88,8 @@ h1,h2,h3,
 .section-title{
 
     font-family:
-    "Syne",
+    "Space Grotesk",
+    system-ui,
     sans-serif;
 
 }
@@ -196,7 +198,7 @@ button{
 
 .section-title{
 
-    font-size:3rem;
+    font-size:clamp(1.85rem, 3.2vw, 3rem);
 
     line-height:1.2;
 
@@ -268,7 +270,7 @@ button{
 
 .loader-initials{
 
-    font-family:"Syne",sans-serif;
+    font-family:"Space Grotesk",system-ui,sans-serif;
 
     font-size:3.5rem;
 
