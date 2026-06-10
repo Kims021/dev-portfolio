@@ -287,6 +287,40 @@
 
 }
 
+.skill-item .emoji-icon{
+
+    font-size:2.4rem;
+
+    line-height:1;
+
+    transition:transform 0.25s ease;
+
+}
+
+.skill-item:hover .emoji-icon{
+
+    transform:scale(1.12);
+
+}
+
+.skill-item .reflex-icon{
+
+    width:2.4rem;
+
+    height:2.4rem;
+
+    fill:#6E56CF;
+
+    transition:transform 0.25s ease;
+
+}
+
+.skill-item:hover .reflex-icon{
+
+    transform:scale(1.12);
+
+}
+
 .skill-item span{
 
     font-size:0.72rem;
@@ -359,9 +393,18 @@
 
     }
 
-    .skill-item i[class*="devicon"]{
+    .skill-item i[class*="devicon"],
+    .skill-item .emoji-icon{
 
         font-size:2rem;
+
+    }
+
+    .skill-item .reflex-icon{
+
+        width:2rem;
+
+        height:2rem;
 
     }
 

@@ -17,6 +17,10 @@ const prevBtn = document.querySelector(".prev");
 
 let autoSlideInterval;
 
+let resumeTimeout;
+
+let isHovering = false;
+
 /* ================================================= */
 /* SLIDER */
 /* ================================================= */
@@ -77,13 +81,21 @@ if (sliderTrack && slides.length) {
   }
 
   /* ============================================= */
-  /* RESTART */
+  /* PAUSE THEN RESUME AFTER DELAY */
   /* ============================================= */
 
-  function restartAutoSlide() {
+  function pauseAutoSlide(delay) {
     stopAutoSlide();
 
-    startAutoSlide();
+    clearTimeout(resumeTimeout);
+
+    resumeTimeout = setTimeout(() => {
+      const flippedCard = document.querySelector(".flip-card.flipped");
+
+      if (!flippedCard && !isHovering) {
+        startAutoSlide();
+      }
+    }, delay);
   }
 
   /* ============================================= */
@@ -100,7 +112,7 @@ if (sliderTrack && slides.length) {
     nextBtn.addEventListener("click", () => {
       nextSlide();
 
-      restartAutoSlide();
+      pauseAutoSlide(30000);
     });
   }
 
@@ -108,7 +120,7 @@ if (sliderTrack && slides.length) {
     prevBtn.addEventListener("click", () => {
       prevSlide();
 
-      restartAutoSlide();
+      pauseAutoSlide(30000);
     });
   }
 
@@ -120,10 +132,14 @@ if (sliderTrack && slides.length) {
 
   if (projectSlider) {
     projectSlider.addEventListener("mouseenter", () => {
+      isHovering = true;
+
       stopAutoSlide();
     });
 
     projectSlider.addEventListener("mouseleave", () => {
+      isHovering = false;
+
       /* ========================= */
       /* CHECK FLIPPED */
       /* ========================= */
@@ -159,24 +175,10 @@ if (sliderTrack && slides.length) {
       flipCard.classList.toggle("flipped");
 
       /* ===================================== */
-      /* STATE */
+      /* PAUSE / RESUME */
       /* ===================================== */
 
-      const isFlipped = flipCard.classList.contains("flipped");
-
-      /* ===================================== */
-      /* STOP */
-      /* ===================================== */
-
-      if (isFlipped) {
-        stopAutoSlide();
-      } else {
-
-      /* ===================================== */
-      /* RESUME */
-      /* ===================================== */
-        startAutoSlide();
-      }
+      pauseAutoSlide(30000);
     });
   });
 }
